@@ -1,0 +1,6 @@
+libproxychains-dev/
+libproxychains4/
+proxychains/
+*.debhelper.log
+*.substvars
+files

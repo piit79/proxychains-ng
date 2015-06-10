@@ -1,0 +1,51 @@
+Source: proxychains
+Section: net
+Priority: optional
+Maintainer: Daniel Echeverry <epsilon77@gmail.com>
+Uploaders: Aron Xu <aron@debian.org>
+Build-Depends: debhelper (>= 9.0)
+Homepage: http://proxychains.sourceforge.net
+Standards-Version: 3.9.4
+
+Package: proxychains
+Architecture: any
+Depends: ${misc:Depends}, libproxychains4 (>= ${binary:Version})
+Multi-Arch: foreign
+Description: proxy chains - redirect connections through proxy servers
+ Proxy chains force any tcp connection made by any given tcp client
+ to follow through proxy (or proxy chain). It is a kind of proxifier.
+ It acts like sockscap / premeo / eborder driver ( intercepts TCP calls )
+ .
+ This version supports SOCKS4, SOCKS5 and HTTP CONNECT proxy servers.
+ Different proxy types can be mixed in the same chain.
+ .
+ Features
+   * Access Internet from behind restrictive firewall.
+   * Source IP masquerade.
+   * SSH tunneling and forwarding.
+   * Dynamic LAN-to-LAN VPN channel.
+   * Servers and daemons friendly (works fine with sendmail MTA).
+ .
+ http://proxychains.sourceforge.net
+
+Package: libproxychains4
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: dnsutils
+Suggests: proxychains
+Breaks: proxychains (<< 3.1-1)
+Replaces: proxychains (<< 3.1-1)
+Multi-Arch: same
+Description: proxy chains -- shared library (runtime)
+ Proxy chains force any tcp connection made by any given tcp client
+ to follow through proxy (or proxy chain). It is a kind of proxifier.
+ It acts like sockscap / premeo / eborder driver ( intercepts TCP calls )
+ .
+ See 'proxychains' package for more detailed description.
+ .
+ This package contains runtime for the shared library used by proxychains.
+ .
+ The package 'dnsutils' is needed to perform DNS requests through proxy. In the
+ case you turned 'proxy_dns' option off in configuration file you don't need
+ dnsutils to be installed.

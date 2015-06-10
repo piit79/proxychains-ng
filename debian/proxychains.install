@@ -1,0 +1,3 @@
+proxychains usr/bin
+src/proxyresolv usr/bin
+src/proxychains.conf etc

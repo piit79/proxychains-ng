@@ -1,0 +1,209 @@
+proxychains (4.10-1) unstable; urgency=low
+
+  * upstream version from https://github.com/rofl0r/proxychains-ng
+  * fix regression in linking order with custom LDFLAGS
+  * fix segfault in DNS mapping code in programs with > ~400 different lookups
+
+ -- Petr Sedlacek <petr@sedlacek.biz>  Wed, 10 Jun 2015 14:31:25 +0200
+
+proxychains (3.1-6) unstable; urgency=low
+
+  * Fix FTBFS with eglibc-2.17. Closes: #701413
+    + Add 600-ftbfs-getnameinfo.patch patch
+  * Bump standard versions 3.9.4 (no changes)
+
+ -- Daniel Echeverry <epsilon77@gmail.com>  Sat, 25 May 2013 14:33:20 -0500
+
+proxychains (3.1-5) unstable; urgency=low
+
+  * Enabling Multi-Arch for the package.
+  * debian/rules: add calls to DEB_HOST_MULTIARCH, calling dh_autoreconf
+  * debian/control: add Multi-Arch fields
+  * debian/libproxychains*.install: update location for Multi-Arch
+  * Move etc/proxychains.conf to binary package proxychains
+
+ -- Aron Xu <aron@debian.org>  Tue, 25 Dec 2012 11:06:43 +0800
+
+proxychains (3.1-4) unstable; urgency=low
+
+  * New maintainer. Closes: #674776
+  * debian/control
+    + Bumped standard versions 3.9.3
+      + Update to DEP5 copyright format 1.0.	
+    + Set myself as Maintainer
+    + Set Aron Xu as Uploaders
+    + Change debhelper to 9 in B-D
+    + Remove quilt in B-D
+    + Add dh-autoreconf in B-D
+  * debian/compat
+    + Switch compat level to 9
+  * debian/patches
+    + Add description to the patches
+    + Add 400_fix_spelling_mistake.diff
+      + Fix spelling mistake. Closes: #683805
+    + Add 500_allow_user_specify_DNS.diff
+      + allow user to specify DNS server in proxyresolv. Closes: #603239
+      + Thanks to The Don Lachlan for the patch
+  * Switch to dpkg-source 3.0 (quilt) format
+  * Fix spelling error in manpage (lintian)  
+  * Remove README.source
+    + Because is not necessary
+  * Add README.Debian
+  * debian/libproxychains-dev.install
+    + Remove .a and .la files (lintian)
+  * debian/rules
+    + Use autoreconf
+
+ -- Daniel Echeverry <epsilon77@gmail.com>  Fri, 14 Sep 2012 07:22:42 -0500
+
+proxychains (3.1-3) unstable; urgency=low
+
+  * debian/control:
+    - Placed Recommends on 'dnsutils' to shared library package, not the
+      development one. Thanks to ckoeni@gmail.com. (Closes: #579329)
+    - Updated my mail address.
+    - Bumped Standards-Version to 3.8.4, no changes needed.
+
+ -- Eugene V. Lyubimkin <jackyf@debian.org>  Tue, 27 Apr 2010 18:03:18 +0300
+
+proxychains (3.1-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Eugene V. Lyubimkin <jackyf.devel@gmail.com>  Fri, 29 May 2009 09:32:11 +0300
+
+proxychains (3.1-1) experimental; urgency=low
+
+  * New maintainer (Closes: #528131). Thanks for work, Rex Tsai.
+  * New upstream release (Closes: #388488, LP: #250973).
+    - Old inline patches are now lost thus.
+  * debian/control:
+    - Removed Martin F. Krafft from Uploaders by his request.
+    - Added '${misc:Depends}' to Depends.
+    - Bumped debhelper Build-Depends to (>= 7.0.50) for v7 style and
+      overrides.
+    - Added quilt (>= 0.40) to Build-Depends for Debian patches.
+    - Added 'Homepage' field.
+    - Bumped 'Standards-Version' to 3.8.1.
+    - Introduced new 'libproxychain3' and 'libproxychains-dev' binary
+      packages.
+    - Added 'autotools-dev' to Build-Depends for copying newer config.sub and
+      config.guess files.
+    - Added Conflicts and Replaces with old versions of 'proxychains' binary
+      package.
+    - The package 'dnsutils' is now recommended by 'libproxychains3' to
+      perform DNS request through proxy.
+  * debian/rules:
+    - Removed obsoleted DH_COMPAT.
+    - General cleanup.
+    - Use debhelper v7 style.
+    - Use quilt 'patch' and 'unpatch' targets.
+    - Pass proper '--sysconfdir' to configure.
+    - Copy newer config.sub and config.guess from autotools during build.
+  * debian/README.source:
+    - Added with instructions how to use quilt, taken from
+      /usr/share/doc/quilt/README.source.
+  * debian/patches:
+    - New 100-exclude-localhost.patch: don't tunnel connections to localhost
+      through proxies. Thanks to Emilio López <turl@tuxfamily.org>.
+      (LP: #336901)
+    - New 200-use-proper-library-version-in-scripts.patch: make 'proxychains'
+      and 'proxyresolv' binaries work without development files for the shared
+      library.
+    - New 300-use-libpath-for-proxyresolv.patch: use path
+      '/usr/lib/proxychains3' for proxyresolv helper script.
+  * debian/proxychains.manpages:
+    - Added.
+  * debian/compat:
+    - Added, set to 7.
+  * debian/watch:
+    - Added.
+  * debian/copyright:
+    - Fixed versionless license pointer.
+    - Fixed old FSF address.
+    - Added a copyright notice.
+  * debian/changelog:
+    - Wrapped too long lines.
+  * debian/dirs:
+    - Removed lintian overrides dir.
+    - Install also /usr/lib/proxychains3 directory for 'proxyresolv' helper
+      script for shared library.
+  * debian/README.Debian:
+    - Removed as obsolete.
+  * debian/proxychains.files:
+    - Removed as obsolete.
+  * debian/docs:
+    - Removed 'docs/en/...' entry as non-existing.
+  * debian/*.install:
+    - Added.
+
+ -- Eugene V. Lyubimkin <jackyf.devel@gmail.com>  Sat, 16 May 2009 14:18:31 +0300
+
+proxychains (2.1-5) unstable; urgency=low
+
+  * applied patch from Klaus Ethgen <Klaus@Ethgen.de>
+  * Fix a small error in which proxy forbite a connection.
+  * Removing white spaces from sources.
+  * Change the behavior on initial connection errors.
+  * Add "."'s to this changelog.
+  * Release proxys marked as down when list gets to small.
+  * Add handling of broken Proxies.
+  * Improve the random number generator.
+  * Improve the handling of down proxies.
+  * Fix problem in socks5 connection.
+  * Allow to save good proxies.
+  * Adding statistic capability replacing saving of good proxies.
+  * Halt process and reread config if too less proxies are available.
+  * Also allow the target to have a value.
+  * fixed undefined symbol: __libc_connect. (Closes: #317801)
+  * spelling corrected, thanks to Rakesh 'arky' Ambati <rakesh_ambati@yahoo.com>
+    (Closes: #321376)
+
+ -- Rex Tsai <chihchun@kalug.linux.org.tw>  Sat,  6 Aug 2005 23:43:44 +0800
+
+proxychains (2.1-4) unstable; urgency=low
+
+  * removed automake from build-depends. upgrade autotools to automake-1.9
+    and autoconf-2.59a-3.
+  * new release for debian pool (Closes: #259617, #282424, #303221)
+
+ -- Rex Tsai <chihchun@kalug.linux.org.tw>  Tue, 17 May 2005 16:21:46 +0800
+
+proxychains (2.1-3) unstable; urgency=low
+
+  * added automake into Build-Depends 
+
+ -- Rex Tsai <chihchun@kalug.linux.org.tw>  Fri, 28 Jan 2005 02:26:29 +0800
+
+proxychains (2.1-2) unstable; urgency=low
+
+  * new release for debian pool (Closes: #259617, #282424)
+
+ -- Rex Tsai <chihchun@kalug.linux.org.tw>  Tue, 25 Jan 2005 00:49:52 +0800
+
+proxychains (2.1-1) unstable; urgency=low
+
+  * new upstream version.
+
+ -- Rex Tsai <chihchun@users.sourceforge.net>  Thu, 13 May 2004 08:43:43 +0800
+
+proxychains (2.0-1) unstable; urgency=low
+
+  * new upstream version.
+  * update standard version to 3.6.1 
+  * update man page.
+  * update control with my current email/pgp, and conffile file.
+
+ -- Rex Tsai <chihchun@users.sourceforge.net>  Tue, 20 Apr 2004 10:45:32 +0800
+
+proxychains (1.8.2-1) unstable; urgency=low
+
+  * new upstream version. 
+
+ -- Rex Tsai <chihchun@users.sourceforge.net>  Mon, 12 Jan 2004 21:16:14 +0800
+
+proxychains (1.8-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Rex Tsai <chihchun@kalug.linux.org.tw>  Sun, 23 Mar 2003 12:45:38 +0800

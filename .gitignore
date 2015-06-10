@@ -17,3 +17,4 @@ version.h
 libtool
 config.*
 stamp-h
+proxychains
